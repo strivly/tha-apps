@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mysql
+spec:
+  destination:
+    namespace: database
+    server: https://kubernetes.default.svc
+  source:
+    path: ''
+    repoURL: registry-1.docker.io/bitnamicharts
+    targetRevision: 13.0.0
+    chart: mysql
+    helm:
+      parameters:
+        - name: auth.database
+          value: tunihealth
+        - name: auth.username
+          value: tha
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  %(bucket)s.fra1.digitaloceanspaces.com fra1.digitaloceanspaces.com

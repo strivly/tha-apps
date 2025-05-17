@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: api
+  name: frontend
   namespace: argocd
 spec:
   destination:
-    namespace: api
+    namespace: frontend
     server: https://kubernetes.default.svc
   source:
     path: helm
-    repoURL: https://gitlab.com/tha.it.service/tunihealthassitanceapi
+    repoURL: https://gitlab.com/tha.it.service/tunihealthassitancefrontend
     targetRevision: HEAD
   project: default
   syncPolicy:
